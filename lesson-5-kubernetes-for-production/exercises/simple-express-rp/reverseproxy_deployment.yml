@@ -2,22 +2,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    service: reverseproxy
-  name: reverseproxy
+    service: simple-express-rp
+  name: simple-express-rp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: reverseproxy
+      service: simple-express-rp
   template:
     metadata:
       labels:
-        service: reverseproxy
+        service: simple-express-rp
     spec:
       containers:
-      - image: gantonop/simple-express-reverseproxy
-        name: reverseproxy
-        imagePullPolicy: Always          
+      - image: gantonop/simple-express-rp
+        name: simple-express-rp
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
       restartPolicy: Always
