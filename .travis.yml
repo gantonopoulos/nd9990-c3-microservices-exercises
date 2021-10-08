@@ -15,12 +15,14 @@ before_script:
 
 script:
   - pwd
-  - docker --version # print the version for logging
-  - docker rmi -f $(docker images -f "dangling=true" -q)
-  - docker-compose -f project/docker-compose-build.yaml build --parallel
+  - docker --version # print the version for logging  
+  - docker build -t udagram-api-user:latest ./project/udagram-api-user
   - docker tag udagram-api-user:latest gantonop/udagram-api-user:1.0
+  - docker build -t udagram-api-feed:latest ./project/udagram-api-feed
   - docker tag udagram-api-feed:latest gantonop/udagram-api-feed:1.0
+  - docker build -t udagram-frontend:latest ./project/udagram-frontend
   - docker tag udagram-frondend:latest gantonop/udagram-frontend:1.0
+  - docker build -t udagram-reverseproxy:latest ./project/udagram-reverseproxy
   - docker tag udagram-reverseproxy:latest gantonop/udagram-reverseproxy:1.0
 
 # Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
