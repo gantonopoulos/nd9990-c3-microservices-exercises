@@ -21,7 +21,7 @@ script:
   - docker build -t udagram-api-feed:latest ./project/udagram-api-feed
   - docker tag udagram-api-feed:latest gantonop/udagram-api-feed:1.0
   - docker build -t udagram-frontend:latest ./project/udagram-frontend
-  - docker tag udagram-frondend:latest gantonop/udagram-frontend:1.0
+  - docker tag udagram-frontend:latest gantonop/udagram-frontend:1.0
   - docker build -t udagram-reverseproxy:latest ./project/udagram-reverseproxy
   - docker tag udagram-reverseproxy:latest gantonop/udagram-reverseproxy:1.0
 
