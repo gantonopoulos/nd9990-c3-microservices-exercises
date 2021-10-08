@@ -14,6 +14,7 @@ before_script:
   - echo "no tests"
 
 script:
+  - pwd
   - docker --version # print the version for logging
   - docker rmi -f $(docker images -f "dangling=true" -q)
   - docker-compose --env-file project/set_env.sh  -f project/docker-compose-build.yaml build --parallel 
