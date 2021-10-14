@@ -15,61 +15,71 @@ spec:
         service: backend-feed
     spec:
       containers:
-      - image: gantonop/udagram-api-feed
-        name: backend-feed
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8080
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          initialDelaySeconds: 3
-          periodSeconds: 3
-        env:
-          - name: URL
-            valueFrom:
-              configMapKeyRef:
-                name: env-config
-                key: URL
-          - name: AWS_REGION
-            valueFrom: 
-              configMapKeyRef:
-                name: env-config
-                key: AWS_REGION
-          - name: AWS_PROFILE
-            valueFrom:
-              configMapKeyRef:
-                name: env-config
-                key: AWS_PROFILE
-          - name: POSTGRES_DATABASE
-            valueFrom:
-              configMapKeyRef:
-                name: env-config
-                key: POSTGRES_DATABASE
-          - name: POSTGRES_HOST
-            valueFrom:
-              configMapKeyRef:
-                name: env-config
-                key: POSTGRES_HOST
-          - name: AWS_MEDIA_BUCKET
-            valueFrom:
-              configMapKeyRef:
-                name: env-config
-                key: AWS_MEDIA_BUCKET
-          - name: POSTGRES_USERNAME
-            valueFrom:
-              configMapKeyRef:
-                name: env-secret
-                key: POSTGRES_USERNAME
-          - name: POSTGRES_PASSWORD
-            valueFrom:
-              configMapKeyRef:
-                name: env-secret
-                key: POSTGRES_PASSWORD
-          - name: JWT_SECRET
-            valueFrom:
-              configMapKeyRef:
-                name: env-secret
-                key: JWT_SECRET
+        - image: gantonop/udagram-api-feed:1.0
+          name: backend-feed
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+#          livenessProbe:
+#            httpGet:
+#              path: /health
+#              port: 8080
+#            initialDelaySeconds: 3
+#            periodSeconds: 3
+          env:
+            - name: URL
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: URL
+            - name: AWS_REGION
+              valueFrom: 
+                configMapKeyRef:
+                  name: env-config
+                  key: AWS_REGION
+            - name: AWS_PROFILE
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: AWS_PROFILE
+            - name: POSTGRES_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: POSTGRES_DATABASE
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: POSTGRES_HOST
+            - name: AWS_MEDIA_BUCKET
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: AWS_MEDIA_BUCKET
+            - name: POSTGRES_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: POSTGRES_USERNAME
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: POSTGRES_PASSWORD
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: JWT_SECRET         
       restartPolicy: Always
+      volumes:
+        - name: aws-secret
+          secret:
+            secretName: aws-secret
+        - name: env-secret
+          secret:
+            secretName: env-secret
+        - name: env-config
+          configMap:
+            name: env-config

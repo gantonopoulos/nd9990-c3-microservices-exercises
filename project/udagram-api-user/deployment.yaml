@@ -15,17 +15,17 @@ spec:
         service: backend-user
     spec:
       containers:
-        - image: gantonop/udagram-api-user
+        - image: gantonop/udagram-api-user:1.0
           name: backend-user
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 3
-            periodSeconds: 3
+#          livenessProbe:
+#            httpGet:
+#              path: /health
+#              port: 8080
+#            initialDelaySeconds: 3
+#            periodSeconds: 3
           env:
             - name: URL
               valueFrom:
@@ -49,17 +49,27 @@ spec:
                   key: POSTGRES_HOST
             - name: POSTGRES_USERNAME
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: env-secret
                   key: POSTGRES_USERNAME
             - name: POSTGRES_PASSWORD
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: env-secret
                   key: POSTGRES_PASSWORD
             - name: JWT_SECRET
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: env-secret
-                  key: JWT_SECRET
+                  key: JWT_SECRET          
       restartPolicy: Always
+      volumes:
+        - name: aws-secret
+          secret:
+            secretName: aws-secret
+        - name: env-secret
+          secret:
+            secretName: env-secret
+        - name: env-config
+          configMap: 
+            name: env-config
