@@ -1,4 +1,4 @@
 .idea
 .env
 set_env.sh
-kubectl_apply_envs.sh
+kubectl_node_setup.sh

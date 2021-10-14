@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     service: reverseproxy
-  name: reverserproxy
+  name: reverseproxy
 spec:
   replicas: 2
   selector:
