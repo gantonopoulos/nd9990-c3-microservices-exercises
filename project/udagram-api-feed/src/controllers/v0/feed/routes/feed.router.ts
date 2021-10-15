@@ -50,7 +50,11 @@ router.get('/signed-url/:fileName',
     requireAuth,
     async (req: Request, res: Response) => {
       const {fileName} = req.params;
+      console.log(`Requesting Signed URL for :[${fileName}]`);
+      console.log(`Host:[${req.headers.host}]`);
+        console.log(`Original URL:[${req.originalUrl}]`);
       const url = AWS.getPutSignedUrl(fileName);
+      console.log(`Put URL Created:[${url}]`)
       res.status(201).send({url: url});
     });
 
@@ -77,6 +81,7 @@ router.post('/',
       const savedItem = await item.save();
 
       savedItem.url = AWS.getGetSignedUrl(savedItem.url);
+      console.log(`GET URL Created:[${savedItem.url}]`)
       res.status(201).send(savedItem);
     });
 
