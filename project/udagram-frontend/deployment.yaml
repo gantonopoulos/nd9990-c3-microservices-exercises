@@ -1,22 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    service: frontend
   name: frontend
+  labels:
+    app: frontend
 spec:
   replicas: 2
   selector:
     matchLabels:
-      service: frontend
+      app: frontend
   template:
     metadata:
       labels:
-        service: frontend
+        app: frontend
     spec:
       containers:
         - image: gantonop/udagram-frontend:1.0
           name: frontend
           imagePullPolicy: Always
           ports:
-            - containerPort: 8080
+            - containerPort: 80
+      restartPolicy: Always

@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    service: backend-feed
   name: backend-feed
+  labels:
+    app: backend-feed
 spec:
   replicas: 2
   selector:
     matchLabels:
-      service: backend-feed
+      app: backend-feed
   template:
     metadata:
       labels:
-        service: backend-feed
+        app: backend-feed
     spec:
       containers:
         - image: gantonop/udagram-api-feed:1.0
