@@ -7,5 +7,5 @@ data:
   AWS_PROFILE: "default"
   POSTGRES_DATABASE: "postgres"
   POSTGRES_HOST: "udacitydbdev.c9yfhbzflqa2.eu-central-1.rds.amazonaws.com"
-  AWS_MEDIA_BUCKET: "gantonop-udacity-dev"
+  AWS_MEDIA_BUCKET: "udagram-bucket-gantonop"
   URL: "http://localhost:8100"

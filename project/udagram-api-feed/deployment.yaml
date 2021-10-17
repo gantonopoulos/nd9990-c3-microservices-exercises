@@ -20,12 +20,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
-#          livenessProbe:
-#            httpGet:
-#              path: /health
-#              port: 8080
-#            initialDelaySeconds: 3
-#            periodSeconds: 3
           env:
             - name: URL
               valueFrom:
@@ -72,6 +66,10 @@ spec:
                 secretKeyRef:
                   name: env-secret
                   key: JWT_SECRET         
+          volumeMounts:
+          - name: aws-secret
+            mountPath: "/root/.aws/"
+            readOnly: true
       restartPolicy: Always
       volumes:
         - name: aws-secret
