@@ -34,6 +34,8 @@ export class ApiService {
 
   get(endpoint): Promise<any> {
     const url = `${API_HOST}${endpoint}`;
+    console.log(`Getting from Host: [${API_HOST}]`);
+      console.log(`At: [${url}]`);
     const req = this.http.get(url, this.httpOptions).pipe(map(ApiService.extractData));
 
     return req

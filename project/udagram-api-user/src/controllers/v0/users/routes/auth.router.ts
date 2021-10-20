@@ -27,6 +27,7 @@ function generateJWT(user: User): string {
 }
 
 export function requireAuth(req: Request, res: Response, next: NextFunction) {
+  console.log(`Authenticating`);
   if (!req.headers || !req.headers.authorization) {
     return res.status(401).send({message: 'No authorization headers.'});
   }
@@ -41,6 +42,7 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
     if (err) {
       return res.status(500).send({auth: false, message: 'Failed to authenticate.'});
     }
+    console.log(`Token Validated`);
     return next();
   });
 }
@@ -54,7 +56,7 @@ router.get('/verification',
 router.post('/login', async (req: Request, res: Response) => {
   const email = req.body.email;
   const password = req.body.password;
-
+  console.log(`Logging in`);
   if (!email || !EmailValidator.validate(email)) {
     return res.status(400).send({auth: false, message: 'Email is required or malformed.'});
   }
