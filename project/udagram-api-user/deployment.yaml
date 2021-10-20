@@ -15,17 +15,12 @@ spec:
         app: backend-user
     spec:
       containers:
-        - image: gantonop/udagram-api-user:1.0
+        - image: gantonop/udagram-api-user:latest
           name: backend-user
-          imagePullPolicy: Always
+          imagePullPolicy: Always          
           ports:
             - containerPort: 8080
           env:
-            - name: URL
-              valueFrom:
-                configMapKeyRef:
-                  name: env-config
-                  key: URL
             - name: AWS_PROFILE
               valueFrom:
                 configMapKeyRef:
@@ -56,7 +51,7 @@ spec:
                 secretKeyRef:
                   name: env-secret
                   key: JWT_SECRET          
-      restartPolicy: Always
+      restartPolicy: Always      
       volumes:
         - name: env-secret
           secret:

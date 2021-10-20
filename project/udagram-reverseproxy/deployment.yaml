@@ -15,7 +15,7 @@ spec:
         service: reverseproxy
     spec:
       containers:
-        - image: gantonop/udagram-reverseproxy:2.0
+        - image: gantonop/udagram-reverseproxy:latest
           name: reverseproxy
           imagePullPolicy: Always
           ports:

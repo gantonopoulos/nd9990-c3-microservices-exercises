@@ -3,16 +3,16 @@ services:
   reverseproxy:
     build:
       context: ./udagram-reverseproxy
-    image: gantonop/udagram-reverseproxy:2.0
+    image: gantonop/udagram-reverseproxy:latest
   backend_user:
     build:
       context: ./udagram-api-user
-    image: gantonop/udagram-api-user:1.0
+    image: gantonop/udagram-api-user:latest
   backend_feed:
     build:
       context: ./udagram-api-feed
-    image: gantonop/udagram-api-feed:1.0
+    image: gantonop/udagram-api-feed:latest
   frontend:
     build:
       context: ./udagram-frontend
-    image: gantonop/udagram-frontend:2.2
+    image: gantonop/udagram-frontend:latest

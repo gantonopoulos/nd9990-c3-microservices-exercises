@@ -15,17 +15,12 @@ spec:
         app: backend-feed
     spec:
       containers:
-        - image: gantonop/udagram-api-feed:1.0
+        - image: gantonop/udagram-api-feed:latest
           name: backend-feed
-          imagePullPolicy: Always
+          imagePullPolicy: Always          
           ports:
             - containerPort: 8080
           env:
-            - name: URL
-              valueFrom:
-                configMapKeyRef:
-                  name: env-config
-                  key: URL
             - name: AWS_REGION
               valueFrom: 
                 configMapKeyRef:
@@ -70,7 +65,7 @@ spec:
           - name: aws-secret
             mountPath: "/root/.aws/"
             readOnly: true
-      restartPolicy: Always
+      restartPolicy: Always      
       volumes:
         - name: aws-secret
           secret:

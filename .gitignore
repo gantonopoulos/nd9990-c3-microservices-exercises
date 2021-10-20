@@ -2,3 +2,6 @@
 .env
 set_env.sh
 kubectl_node_setup.sh
+project/cluster-setup/aws-secret.yaml
+project/cluster-setup/env-configmap.yaml
+project/cluster-setup/env-secret.yaml
