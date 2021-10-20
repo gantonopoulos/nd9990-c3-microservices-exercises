@@ -17,7 +17,14 @@ spec:
       containers:
         - image: gantonop/udagram-api-feed:3.0
           name: backend-feed
-          imagePullPolicy: Always          
+          imagePullPolicy: Always      
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "3064Mi"
+              cpu: "500m" 
           ports:
             - containerPort: 8080
           env:
