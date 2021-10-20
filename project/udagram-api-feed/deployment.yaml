@@ -15,7 +15,7 @@ spec:
         app: backend-feed
     spec:
       containers:
-        - image: gantonop/udagram-api-feed:latest
+        - image: gantonop/udagram-api-feed:3.0
           name: backend-feed
           imagePullPolicy: Always          
           ports:

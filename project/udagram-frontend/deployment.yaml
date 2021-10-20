@@ -15,7 +15,7 @@ spec:
         app: frontend
     spec:
       containers:
-        - image: gantonop/udagram-frontend:latest
+        - image: gantonop/udagram-frontend:3.0
           name: frontend
           imagePullPolicy: Always
           ports:
